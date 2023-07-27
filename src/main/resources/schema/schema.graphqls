@@ -1,0 +1,128 @@
+type Query {
+    Policy(
+        limit: Int,
+        offset: Int,
+        orderBy: [Policy_OrderByInput],
+        where: Policy_FilterInput,
+        first: Int,
+        after: String
+    ): Policy_Connection
+    node(id: ID!): Node
+}
+
+
+type Policy implements Node {
+    id: ID!
+    name: String
+    createdDate: String
+}
+
+type Policy_Connection {
+    edges: [Policy_Edge]
+    pageInfo: PageInfo!
+}
+
+type Policy_Edge {
+    cursor: String!
+    node: Policy
+}
+
+input Policy_FilterInput {
+    and: [Policy_FilterInput]
+    not: Policy_FilterInput
+    or: [Policy_FilterInput]
+    id: IDOperator
+    name: StringOperator
+    createdDate: StringOperator
+}
+
+input Policy_OrderByInput {
+    id: OrderByClause
+    name: OrderByClause
+}
+
+interface Node {
+    id: ID!
+}
+
+enum NullsOrder {
+    NULLS_FIRST
+    NULLS_LAST
+}
+
+input OrderByClause {
+    direction: Direction
+    nulls: NullsOrder
+}
+
+type PageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+}
+
+input StringOperator {
+    eq: String
+    gt: String
+    ge: String
+    in: [String]
+    like: String
+    lt: String
+    le: String
+    ne: String
+    nin: [String]
+}
+
+input BooleanOperator {
+    eq: Boolean
+    gt: Boolean
+    gebolded: Boolean
+    in: [Boolean]
+    like: Boolean
+    lt: Boolean
+    le: Boolean
+    ne: Boolean
+    nin: [Boolean]
+}
+
+enum Direction {
+    ASC
+    DESC
+}
+
+input FloatOperator {
+    eq: Float
+    gt: Float
+    ge: Float
+    in: [Float]
+    like: Float
+    lt: Float
+    le: Float
+    ne: Float
+    nin: [Float]
+}
+
+input IDOperator {
+    eq: ID
+    gt: ID
+    ge: ID
+    in: [ID]
+    like: ID
+    lt: ID
+    le: ID
+    ne: ID
+    nin: [ID]
+}
+
+input IntOperator {
+    eq: Int
+    gt: Int
+    ge: Int
+    in: [Int]
+    like: Int
+    lt: Int
+    le: Int
+    ne: Int
+    nin: [Int]
+}
