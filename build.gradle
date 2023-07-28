@@ -7,7 +7,7 @@ plugins {
 
 group 'org.example.salesforceconnect'
 version '1.0-SNAPSHOT'
-sourceCompatibility = "17"
+sourceCompatibility = "11"
 
 repositories {
     mavenLocal()
