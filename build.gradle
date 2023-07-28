@@ -1,11 +1,16 @@
 plugins {
     id 'java'
+    id 'org.akhikhl.gretty' version '2.0.0'
+    id 'com.google.cloud.tools.appengine' version '2.4.4'
+    id 'war'
 }
 
-group 'org.example'
+group 'org.example.salesforceconnect'
 version '1.0-SNAPSHOT'
+sourceCompatibility = "17"
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 configurations {
@@ -22,6 +27,19 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.1.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+
+
+gretty {
+    servletContainer = 'jetty9'  // What App Engine Flexible uses
+}
+
+appengine {
+    deploy {   // deploy configuration
+        stopPreviousVersion = true  // default - stop the current version
+        promote = true              // default - & make this the current version
+    }
 }
 
 test {
